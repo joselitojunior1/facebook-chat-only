@@ -23,7 +23,6 @@ var updates_container = toArray(pagelet_dock.children).filter(function(elem) {
 });
 
 for (var i = 0; i < updates_container.length; i++) {
-    console.log(updates_container[i].tagName);
     updates_container[i].style.display = 'none';
 }
 
