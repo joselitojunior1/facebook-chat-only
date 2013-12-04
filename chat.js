@@ -34,8 +34,9 @@ if (window.chatOnlyActive === undefined) {
 
 if (!window.chatOnlyActive) {
     toggleElements('none');
+
     var background = document.createElement('div');
-    background.id = "blank_div";
+    background.id = 'blank_div';
     background.style.position = 'absolute';
     background.style.width = '100%';
     background.style.height = '100%';
@@ -43,12 +44,18 @@ if (!window.chatOnlyActive) {
     //background.style.backgroundImage = "url('background.jpg')";
     background.style.zIndex = '1';
     globalContainer.parentNode.insertBefore(background, globalContainer);
+
     document.title = 'Facebook Chat';
+    chrome.runtime.sendMessage({'action': 'activate'});
     window.chatOnlyActive = true;
+
 } else {
     toggleElements('');
+
     var background = document.getElementById('blank_div');
     background.parentNode.removeChild(background);
+
     document.title = 'Facebook';
+    chrome.runtime.sendMessage({'action': 'deactivate'});
     window.chatOnlyActive = false;
 }
