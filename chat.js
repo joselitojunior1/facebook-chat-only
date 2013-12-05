@@ -6,7 +6,10 @@ function toArray(collection) {
     return array;
 }
 
-function toggleElements(styleDisplay) {
+function toggleElements(activate) {
+    var styleDisplay = activate ? 'none' : '';
+    var styleDisplayBackground = !activate ? 'none' : '';
+
     var globalContainer = document.getElementById('globalContainer');
     globalContainer.style.display = styleDisplay;
 
@@ -22,40 +25,42 @@ function toggleElements(styleDisplay) {
             return elem.tagName === 'UL';
         }).length > 0;
     });
-
     for (var i = 0; i < updates_container.length; i++) {
         updates_container[i].style.display = styleDisplay;
     }
+
+    window.chatOnlyBackground.style.display = styleDisplayBackground;
 }
 
 if (window.chatOnlyActive === undefined) {
     window.chatOnlyActive = false;
 }
 
+if (window.chatOnlyBackground === undefined) {
+    window.chatOnlyBackground = document.createElement('div');
+    window.chatOnlyBackground.id = 'blank_div';
+    window.chatOnlyBackground.style.position = 'absolute';
+    window.chatOnlyBackground.style.width = '100%';
+    window.chatOnlyBackground.style.height = '100%';
+    window.chatOnlyBackground.style.backgroundColor = '#6286D2';
+    window.chatOnlyBackground.style.backgroundImage = "url('"
+        + chrome.extension.getURL('background.png') + "')";
+    window.chatOnlyBackground.style.backgroundPosition = 'center';
+    window.chatOnlyBackground.style.backgroundRepeat = 'no-repeat';
+    window.chatOnlyBackground.style.WebkitOpacity = '0.3';
+    window.chatOnlyBackground.style.zIndex = '1';
+
+    var globalContainer = document.getElementById('globalContainer');
+    globalContainer.parentNode.insertBefore(window.chatOnlyBackground, globalContainer);
+}
+
 if (!window.chatOnlyActive) {
-    toggleElements('none');
-
-    var background = document.createElement('div');
-    background.id = 'blank_div';
-    background.style.position = 'absolute';
-    background.style.width = '100%';
-    background.style.height = '100%';
-    background.style.backgroundColor = '#EEEEEE';
-    //background.style.backgroundImage = "url('background.jpg')";
-    background.style.zIndex = '1';
-    globalContainer.parentNode.insertBefore(background, globalContainer);
-
+    toggleElements(true);
+    window.previousTitle = document.title;
     document.title = 'Facebook Chat';
-    chrome.runtime.sendMessage({'action': 'activate'});
     window.chatOnlyActive = true;
-
 } else {
-    toggleElements('');
-
-    var background = document.getElementById('blank_div');
-    background.parentNode.removeChild(background);
-
-    document.title = 'Facebook';
-    chrome.runtime.sendMessage({'action': 'deactivate'});
+    toggleElements(false);
+    document.title = window.previousTitle;
     window.chatOnlyActive = false;
 }
