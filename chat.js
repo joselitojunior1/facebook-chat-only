@@ -1,9 +1,5 @@
 function toArray(collection) {
-    var array = [];
-    for (var i = 0; i < collection.length; i++) {
-        array.push(collection[i]);
-    }
-    return array;
+    [].slice.call(collection);
 }
 
 function toggleElements(activate) {
