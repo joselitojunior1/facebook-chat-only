@@ -1,5 +1,5 @@
 function toArray(collection) {
-    [].slice.call(collection);
+    return [].slice.call(collection);
 }
 
 function toggleElements(activate) {
