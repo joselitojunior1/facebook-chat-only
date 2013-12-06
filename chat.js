@@ -1,9 +1,5 @@
 function toArray(collection) {
-    var array = [];
-    for (var i = 0; i < collection.length; i++) {
-        array.push(collection[i]);
-    }
-    return array;
+    [].slice.call(collection);
 }
 
 function toggleElements(activate) {
@@ -13,20 +9,20 @@ function toggleElements(activate) {
     var globalContainer = document.getElementById('globalContainer');
     globalContainer.style.display = styleDisplay;
 
-    var pagelet_bluebar = document.getElementById('pagelet_bluebar');
-    pagelet_bluebar.style.display = styleDisplay;
+    var pageletBluebar = document.getElementById('pagelet_bluebar');
+    pageletBluebar.style.display = styleDisplay;
 
-    var pagelet_ticker = document.getElementById('pagelet_ticker');
-    pagelet_ticker.style.display = styleDisplay;
+    var pageletTicker = document.getElementById('pagelet_ticker');
+    pageletTicker.style.display = styleDisplay;
 
-    var pagelet_dock = document.getElementById('pagelet_dock');
-    var updates_container = toArray(pagelet_dock.children).filter(function(elem) {
+    var pageletDock = document.getElementById('pagelet_dock');
+    var updatesContainer = toArray(pageletDock.children).filter(function(elem) {
         return toArray(elem.children).filter(function(elem) {
             return elem.tagName === 'UL';
         }).length > 0;
     });
-    for (var i = 0; i < updates_container.length; i++) {
-        updates_container[i].style.display = styleDisplay;
+    for (var i = 0; i < updatesContainer.length; i++) {
+        updatesContainer[i].style.display = styleDisplay;
     }
 
     window.chatOnlyBackground.style.display = styleDisplayBackground;
