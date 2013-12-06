@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Facebook Chat Only",
   "description": "Hides facebook's distractions such as the timeline, leaving only the chat service.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icons": {
     "128" : "icon-128.png"
   },
