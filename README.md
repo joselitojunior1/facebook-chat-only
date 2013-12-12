@@ -1,2 +1,5 @@
 # Facebook Chat Only
-Google Chrome extension which hides the timeline and all notifications, leaving for you only the chat with one click.
+Google Chrome extension which allows you to hide the timeline and all notifications and enter a chat-only mode.
+
+## Install
+https://chrome.google.com/webstore/detail/facebook-chat-only/nandlceadjgicbkdjhoppnlcegigifkb
