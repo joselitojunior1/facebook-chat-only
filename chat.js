@@ -39,10 +39,6 @@ if (window.chatOnlyBackground === undefined) {
     window.chatOnlyBackground.style.width = '100%';
     window.chatOnlyBackground.style.height = '100%';
     window.chatOnlyBackground.style.backgroundColor = '#6286D2';
-    window.chatOnlyBackground.style.backgroundImage = "url('"
-        + chrome.extension.getURL('background.png') + "')";
-    window.chatOnlyBackground.style.backgroundPosition = 'center';
-    window.chatOnlyBackground.style.backgroundRepeat = 'no-repeat';
     window.chatOnlyBackground.style.WebkitOpacity = '0.3';
     window.chatOnlyBackground.style.zIndex = '1';
 
